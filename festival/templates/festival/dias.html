@@ -1,20 +1,27 @@
-{% extends 'festival/layout.html' %}
+{% extends "festival/layout.html" %}
 
 {% block content %}
-    
+<h1>Dias do Festival</h1>
+
 {% for dia in dias %}
+    <h2>{{ dia.data }}</h2>
 
-<h2 style="padding:20px; background:{{dia.cor}}; color:black;">{{ dia.data|date:"d M'y" }}</h2>
-
-    {% for concerto in dia.concertos.all %}
-        <article class="card">
-            <a href="{% url 'concerto' concerto.id %}">{{ concerto.banda.nome }} - {{ concerto.hora }} @ {{ concerto.palco }}</a>
-        </article>
-    {% endfor %}
+    {% if dia.concerto_set.all %}
+        <ul>
+            {% for concerto in dia.concerto_set.all %}
+                <li>
+                    <a href="{% url 'concerto_detail' concerto.id %}">
+                        {{ concerto.hora }} — {{ concerto.banda.nome }} ({{ concerto.palco.nome }})
+                    </a>
+                </li>
+            {% empty %}
+                <li>Sem concertos neste dia.</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Sem concertos neste dia.</p>
+    {% endif %}
 
 {% endfor %}
 
-
-
 {% endblock %}
-    

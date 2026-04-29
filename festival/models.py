@@ -8,8 +8,8 @@ class Banda(models.Model):
 
 class Palco(models.Model):
     nome = models.CharField(max_length=100)
-    capacidade = models.PositiveIntegerField(default=0)
-    imagem = models.ImageField(upload_to="palcos/", null=True, blank=True)
+    capacidade = models.IntegerField()
+    acessibilidade_mobilidade_reduzida = models.BooleanField(default=False)  # NOVO CAMPO
 
     def __str__(self):
         return self.nome
@@ -17,21 +17,22 @@ class Palco(models.Model):
 
 class Dia(models.Model):
     data = models.DateField()
-    cor = models.CharField(max_length=20, default="#000000")
+
+    class Meta:
+        ordering = ["data"]  # GARANTE DIAS ORDENADOS CRESCENTEMENTE
 
     def __str__(self):
         return str(self.data)
 
 
 class Concerto(models.Model):
-    banda = models.ForeignKey(Banda, on_delete=models.CASCADE, related_name="concertos")
-    dia = models.ForeignKey(Dia, on_delete=models.CASCADE, related_name="concertos")
+    banda = models.ForeignKey(Banda, on_delete=models.CASCADE)
+    palco = models.ForeignKey(Palco, on_delete=models.CASCADE)
+    dia = models.ForeignKey(Dia, on_delete=models.CASCADE)
     hora = models.TimeField()
-    palco = models.ForeignKey(Palco, on_delete=models.CASCADE, related_name="concertos")
 
     class Meta:
-        unique_together = (("dia", "palco", "hora"),)
-        ordering = ["dia__data", "hora"]
+        ordering = ["dia__data", "hora"]  # ORDENA POR DIA E HORA
 
     def __str__(self):
-        return f"{self.banda} - {self.dia}"
+        return f"{self.banda} - {self.dia} {self.hora}"

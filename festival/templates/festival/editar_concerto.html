@@ -1,14 +1,17 @@
-{% extends 'festival/layout.html' %}
+{% extends "festival/layout.html" %}
 
 {% block content %}
-<article class="card">
-    <h2>Editar concerto</h2>
-    <p><strong>Concerto atual:</strong> {{ concerto.banda.nome }} - {{ concerto.dia }} - {{ concerto.hora }}</p>
+<h1>Editar Concerto</h1>
 
-    <form method="post" style="display: grid; gap: 12px; max-width: 520px;">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn">Guardar</button>
-    </form>
-</article>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit">Guardar alterações</button>
+</form>
+
+<a href="{% url 'concerto_detail' concerto.id %}">
+    <button>Cancelar</button>
+</a>
+
 {% endblock %}

@@ -1,16 +1,16 @@
 {% extends "festival/layout.html" %}
 
 {% block content %}
-<h1>Editar Palco</h1>
+<h1>Criar Concerto</h1>
 
 <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
 
-    <button type="submit">Guardar alterações</button>
+    <button type="submit">Criar concerto</button>
 </form>
 
-<a href="{% url 'lista_palcos' %}">
+<a href="{% url 'lista_dias' %}">
     <button>Cancelar</button>
 </a>
 
