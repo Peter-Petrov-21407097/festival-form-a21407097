@@ -7,7 +7,7 @@ O formulário de concertos foi ajustado para permitir criar e editar todos os ca
 Foi implementada a funcionalidade para criação de novos concertos a partir do menu.
 Adicionada a possibilidade de eliminar concertos através de um pedido POST na rota concertos/<int:concerto_id>/apagar/.
 O modelo Palco foi expandido com o campo booleano acessibilidade_mobilidade_reduzida.
-A página de palcos foi melhorada para mostrar:
+A página de palcos foi editada de forma a poder mostrar:
 capacidade
 número total de concertos agendados
 indicação de acessibilidade com o símbolo ♿
