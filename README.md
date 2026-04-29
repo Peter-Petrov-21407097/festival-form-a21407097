@@ -12,3 +12,5 @@ capacidade
 número total de concertos agendados
 indicação de acessibilidade com o símbolo ♿
 Foi criada a funcionalidade que permite editar os dados de cada palco.
+Mais alterado no views as palavras (por exemplo, alterei o caminho para o caminho certo, nome de ficheiro correto)
+Foi colocado as urls referentes a alteracoes com o nome de ficheiro e path correto, para se poder editar.
